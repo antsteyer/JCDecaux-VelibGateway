@@ -8,9 +8,18 @@ namespace VelibGateway_Service
 {
   public class Service : IService
   {
-    public string showCoucou()
+    public string help()
     {
-      return "Coucou";
+      return "------ Commands ------\n"
+            + "\ttest : Test the connection with the server";
     }
+
+    public string testConnexion(string clientID)
+    {
+      return "From Server | Connexion established with : " + clientID;
+    }
+
+
+
   }
 }

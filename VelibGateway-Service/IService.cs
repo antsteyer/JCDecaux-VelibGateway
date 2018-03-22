@@ -11,6 +11,9 @@ namespace VelibGateway_Service
   public interface IService
   {
     [OperationContract]
-    string showCoucou();
+    string testConnexion(string clientID);
+
+    [OperationContract]
+    string help();
   }
 }

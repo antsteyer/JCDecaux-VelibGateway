@@ -15,11 +15,17 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="VelibServiceReference.IService")]
     public interface IService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/showCoucou", ReplyAction="http://tempuri.org/IService/showCoucouResponse")]
-        string showCoucou();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/testConnexion", ReplyAction="http://tempuri.org/IService/testConnexionResponse")]
+        string testConnexion(string clientID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/showCoucou", ReplyAction="http://tempuri.org/IService/showCoucouResponse")]
-        System.Threading.Tasks.Task<string> showCoucouAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/testConnexion", ReplyAction="http://tempuri.org/IService/testConnexionResponse")]
+        System.Threading.Tasks.Task<string> testConnexionAsync(string clientID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/help", ReplyAction="http://tempuri.org/IService/helpResponse")]
+        string help();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/help", ReplyAction="http://tempuri.org/IService/helpResponse")]
+        System.Threading.Tasks.Task<string> helpAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +55,20 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public string showCoucou() {
-            return base.Channel.showCoucou();
+        public string testConnexion(string clientID) {
+            return base.Channel.testConnexion(clientID);
         }
         
-        public System.Threading.Tasks.Task<string> showCoucouAsync() {
-            return base.Channel.showCoucouAsync();
+        public System.Threading.Tasks.Task<string> testConnexionAsync(string clientID) {
+            return base.Channel.testConnexionAsync(clientID);
+        }
+        
+        public string help() {
+            return base.Channel.help();
+        }
+        
+        public System.Threading.Tasks.Task<string> helpAsync() {
+            return base.Channel.helpAsync();
         }
     }
 }
