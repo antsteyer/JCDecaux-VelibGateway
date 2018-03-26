@@ -11,9 +11,21 @@ namespace VelibGateway_Service
   public interface IService
   {
     [OperationContract]
-    string testConnexion(string clientID);
+    String TestConnexion(String clientID);
 
     [OperationContract]
-    string help();
+    String Contracts();
+
+    [OperationContract]
+    String CitiesInContract(String contractName);
+
+    [OperationContract]
+    String StationsOfTheCity(String cityName);
+
+    [OperationContract]
+    int NnumberOfBikesAvailable(String stationName);
+
+    [OperationContract]
+    String ClearCaches();
   }
 }
