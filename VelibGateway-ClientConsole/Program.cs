@@ -20,6 +20,7 @@ namespace VelibGateway_ClientConsole
       {
         Console.Write(">_ ");
         String command = Console.ReadLine();
+        String contractName;
         Console.WriteLine();
         switch (command) {
           case "/exit":
@@ -31,8 +32,23 @@ namespace VelibGateway_ClientConsole
           case "/contracts":
             Console.WriteLine(client.Contracts());
             break;
+          case "/citiesincontract":
+            Console.Write("Enter the name of the contract : ");
+            contractName = Console.ReadLine();
+            Console.WriteLine(client.CitiesInContract(contractName));
+            break;
+          case "/stations":
+            Console.Write("Enter the name of the city : ");
+            contractName = Console.ReadLine();
+            Console.WriteLine(client.StationsOfTheCity(contractName));
+            break;
+          case "/bikes":
+            Console.Write("Enter the name of the station : ");
+            String stationName = Console.ReadLine();
+            Console.WriteLine(client.NumberOfBikesAvailable(stationName));
+            break;
           case "/clear":
-            
+            Console.WriteLine(client.ClearCaches());
             break;
           case "/help":
             Console.WriteLine(help());
@@ -50,6 +66,10 @@ namespace VelibGateway_ClientConsole
       return  "----------| Commands |----------\n"
             + "/test : Test the connection with the server.\n"
             + "/contracts : Print all the Velib contracts (cities).\n"
+            + "/citiesincontract : Print all the cities in the velib contract given.\n"
+            + "/stations : Print all the stations in the velib contract given.\n"
+            + "/bikes : Number of bikes available in the given velib station.\n"
+            + "/clear : Clear the caches used by Velib Gateway Service.\n"
             + "/exit : Exit the application.\n"
             + "--------------------------------";
     }

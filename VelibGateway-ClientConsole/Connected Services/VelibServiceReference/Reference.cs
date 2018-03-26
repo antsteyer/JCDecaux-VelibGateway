@@ -39,17 +39,17 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/StationsOfTheCity", ReplyAction="http://tempuri.org/IService/StationsOfTheCityResponse")]
         System.Threading.Tasks.Task<string> StationsOfTheCityAsync(string cityName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NnumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NnumberOfBikesAvailableResponse")]
-        int NnumberOfBikesAvailable(string stationName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NumberOfBikesAvailableResponse")]
+        string NumberOfBikesAvailable(string stationName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NnumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NnumberOfBikesAvailableResponse")]
-        System.Threading.Tasks.Task<int> NnumberOfBikesAvailableAsync(string stationName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ClearCaches", ReplyAction="http://tempuri.org/IService/ClearCachesResponse")]
-        bool ClearCaches();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NumberOfBikesAvailableResponse")]
+        System.Threading.Tasks.Task<string> NumberOfBikesAvailableAsync(string stationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ClearCaches", ReplyAction="http://tempuri.org/IService/ClearCachesResponse")]
-        System.Threading.Tasks.Task<bool> ClearCachesAsync();
+        string ClearCaches();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ClearCaches", ReplyAction="http://tempuri.org/IService/ClearCachesResponse")]
+        System.Threading.Tasks.Task<string> ClearCachesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,19 +111,19 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
             return base.Channel.StationsOfTheCityAsync(cityName);
         }
         
-        public int NnumberOfBikesAvailable(string stationName) {
-            return base.Channel.NnumberOfBikesAvailable(stationName);
+        public string NumberOfBikesAvailable(string stationName) {
+            return base.Channel.NumberOfBikesAvailable(stationName);
         }
         
-        public System.Threading.Tasks.Task<int> NnumberOfBikesAvailableAsync(string stationName) {
-            return base.Channel.NnumberOfBikesAvailableAsync(stationName);
+        public System.Threading.Tasks.Task<string> NumberOfBikesAvailableAsync(string stationName) {
+            return base.Channel.NumberOfBikesAvailableAsync(stationName);
         }
         
-        public bool ClearCaches() {
+        public string ClearCaches() {
             return base.Channel.ClearCaches();
         }
         
-        public System.Threading.Tasks.Task<bool> ClearCachesAsync() {
+        public System.Threading.Tasks.Task<string> ClearCachesAsync() {
             return base.Channel.ClearCachesAsync();
         }
     }

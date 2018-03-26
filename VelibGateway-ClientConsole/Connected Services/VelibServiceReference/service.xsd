@@ -54,17 +54,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="NnumberOfBikesAvailable">
+  <xs:element name="NumberOfBikesAvailable">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="NnumberOfBikesAvailableResponse">
+  <xs:element name="NumberOfBikesAvailableResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="NnumberOfBikesAvailableResult" type="xs:int" />
+        <xs:element minOccurs="0" name="NumberOfBikesAvailableResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -76,7 +76,7 @@
   <xs:element name="ClearCachesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ClearCachesResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ClearCachesResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

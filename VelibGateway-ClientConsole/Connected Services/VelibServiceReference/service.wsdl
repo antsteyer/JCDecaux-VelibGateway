@@ -30,11 +30,11 @@
   <wsdl:message name="IService_StationsOfTheCity_OutputMessage">
     <wsdl:part name="parameters" element="tns:StationsOfTheCityResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_NnumberOfBikesAvailable_InputMessage">
-    <wsdl:part name="parameters" element="tns:NnumberOfBikesAvailable" />
+  <wsdl:message name="IService_NumberOfBikesAvailable_InputMessage">
+    <wsdl:part name="parameters" element="tns:NumberOfBikesAvailable" />
   </wsdl:message>
-  <wsdl:message name="IService_NnumberOfBikesAvailable_OutputMessage">
-    <wsdl:part name="parameters" element="tns:NnumberOfBikesAvailableResponse" />
+  <wsdl:message name="IService_NumberOfBikesAvailable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NumberOfBikesAvailableResponse" />
   </wsdl:message>
   <wsdl:message name="IService_ClearCaches_InputMessage">
     <wsdl:part name="parameters" element="tns:ClearCaches" />
@@ -59,9 +59,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/StationsOfTheCity" message="tns:IService_StationsOfTheCity_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/StationsOfTheCityResponse" message="tns:IService_StationsOfTheCity_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="NnumberOfBikesAvailable">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/NnumberOfBikesAvailable" message="tns:IService_NnumberOfBikesAvailable_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/NnumberOfBikesAvailableResponse" message="tns:IService_NnumberOfBikesAvailable_OutputMessage" />
+    <wsdl:operation name="NumberOfBikesAvailable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/NumberOfBikesAvailable" message="tns:IService_NumberOfBikesAvailable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/NumberOfBikesAvailableResponse" message="tns:IService_NumberOfBikesAvailable_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ClearCaches">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/ClearCaches" message="tns:IService_ClearCaches_InputMessage" />
@@ -106,8 +106,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="NnumberOfBikesAvailable">
-      <soap:operation soapAction="http://tempuri.org/IService/NnumberOfBikesAvailable" style="document" />
+    <wsdl:operation name="NumberOfBikesAvailable">
+      <soap:operation soapAction="http://tempuri.org/IService/NumberOfBikesAvailable" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
