@@ -127,14 +127,16 @@ namespace VelibGateway_Service
         var stations = JsonConvert.DeserializeObject<List<Station>>(response);
         lastStationName = "";
         bikesCache = "";
-
+        int numberOfStations = 0;
         foreach (Station station in stations)
         {
           if (station.name.Contains(stationName))
           {
             lastStationName = stationName;
             bikesCache = station.available_bikes.ToString();
-            break;
+            responseToClient += "Number of bikes available at \"" + station.name + "\" : ";
+            responseToClient += bikesCache + "\n";
+            numberOfStations++;
           }
         }
         // If station not found
@@ -142,10 +144,12 @@ namespace VelibGateway_Service
         {
           responseToClient += "Station not found.";
         }
-        else
+
+        if(numberOfStations > 1)
         {
-          responseToClient += "Number of bikes available at \"" + stationName + "\" : ";
-          responseToClient += bikesCache;
+          responseToClient += "\nMore of one station corresponded to the name given. The cache works only with one result (Try to be more precise on the name of the station to find it).";
+          lastStationName = "";
+          bikesCache = "";
         }
       }
       return responseToClient;
