@@ -21,7 +21,7 @@ namespace VelibGateway_ClientConsole
         Console.Write(">_ ");
         String command = Console.ReadLine();
         String contractName;
-        var watch;
+        System.Diagnostics.Stopwatch watch;
         Console.WriteLine();
         switch (command) {
           case "/exit":
