@@ -15,17 +15,41 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="VelibServiceReference.IService")]
     public interface IService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/testConnexion", ReplyAction="http://tempuri.org/IService/testConnexionResponse")]
-        string testConnexion(string clientID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TestConnexion", ReplyAction="http://tempuri.org/IService/TestConnexionResponse")]
+        string TestConnexion(string clientID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/testConnexion", ReplyAction="http://tempuri.org/IService/testConnexionResponse")]
-        System.Threading.Tasks.Task<string> testConnexionAsync(string clientID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TestConnexion", ReplyAction="http://tempuri.org/IService/TestConnexionResponse")]
+        System.Threading.Tasks.Task<string> TestConnexionAsync(string clientID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/help", ReplyAction="http://tempuri.org/IService/helpResponse")]
-        string help();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Contracts", ReplyAction="http://tempuri.org/IService/ContractsResponse")]
+        string Contracts();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/help", ReplyAction="http://tempuri.org/IService/helpResponse")]
-        System.Threading.Tasks.Task<string> helpAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Contracts", ReplyAction="http://tempuri.org/IService/ContractsResponse")]
+        System.Threading.Tasks.Task<string> ContractsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CitiesInContract", ReplyAction="http://tempuri.org/IService/CitiesInContractResponse")]
+        string CitiesInContract(string contractName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CitiesInContract", ReplyAction="http://tempuri.org/IService/CitiesInContractResponse")]
+        System.Threading.Tasks.Task<string> CitiesInContractAsync(string contractName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/StationsOfTheCity", ReplyAction="http://tempuri.org/IService/StationsOfTheCityResponse")]
+        string StationsOfTheCity(string cityName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/StationsOfTheCity", ReplyAction="http://tempuri.org/IService/StationsOfTheCityResponse")]
+        System.Threading.Tasks.Task<string> StationsOfTheCityAsync(string cityName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NnumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NnumberOfBikesAvailableResponse")]
+        int NnumberOfBikesAvailable(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NnumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NnumberOfBikesAvailableResponse")]
+        System.Threading.Tasks.Task<int> NnumberOfBikesAvailableAsync(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ClearCaches", ReplyAction="http://tempuri.org/IService/ClearCachesResponse")]
+        bool ClearCaches();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ClearCaches", ReplyAction="http://tempuri.org/IService/ClearCachesResponse")]
+        System.Threading.Tasks.Task<bool> ClearCachesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,20 +79,52 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public string testConnexion(string clientID) {
-            return base.Channel.testConnexion(clientID);
+        public string TestConnexion(string clientID) {
+            return base.Channel.TestConnexion(clientID);
         }
         
-        public System.Threading.Tasks.Task<string> testConnexionAsync(string clientID) {
-            return base.Channel.testConnexionAsync(clientID);
+        public System.Threading.Tasks.Task<string> TestConnexionAsync(string clientID) {
+            return base.Channel.TestConnexionAsync(clientID);
         }
         
-        public string help() {
-            return base.Channel.help();
+        public string Contracts() {
+            return base.Channel.Contracts();
         }
         
-        public System.Threading.Tasks.Task<string> helpAsync() {
-            return base.Channel.helpAsync();
+        public System.Threading.Tasks.Task<string> ContractsAsync() {
+            return base.Channel.ContractsAsync();
+        }
+        
+        public string CitiesInContract(string contractName) {
+            return base.Channel.CitiesInContract(contractName);
+        }
+        
+        public System.Threading.Tasks.Task<string> CitiesInContractAsync(string contractName) {
+            return base.Channel.CitiesInContractAsync(contractName);
+        }
+        
+        public string StationsOfTheCity(string cityName) {
+            return base.Channel.StationsOfTheCity(cityName);
+        }
+        
+        public System.Threading.Tasks.Task<string> StationsOfTheCityAsync(string cityName) {
+            return base.Channel.StationsOfTheCityAsync(cityName);
+        }
+        
+        public int NnumberOfBikesAvailable(string stationName) {
+            return base.Channel.NnumberOfBikesAvailable(stationName);
+        }
+        
+        public System.Threading.Tasks.Task<int> NnumberOfBikesAvailableAsync(string stationName) {
+            return base.Channel.NnumberOfBikesAvailableAsync(stationName);
+        }
+        
+        public bool ClearCaches() {
+            return base.Channel.ClearCaches();
+        }
+        
+        public System.Threading.Tasks.Task<bool> ClearCachesAsync() {
+            return base.Channel.ClearCachesAsync();
         }
     }
 }
