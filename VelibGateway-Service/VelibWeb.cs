@@ -20,8 +20,16 @@ namespace VelibGateway_Service
 
     public String ConnectToAPI(String requestParams)
     {
-      WebRequest request = WebRequest.Create(baseVelibURL + requestParams + "&apiKey=" + APIkey);
-      return getResponseToString(request.GetResponse());
+      try
+      {
+        WebRequest request = WebRequest.Create(baseVelibURL + requestParams + "&apiKey=" + APIkey);
+        return getResponseToString(request.GetResponse());
+      } catch (System.Net.WebException e)
+      {
+        return "KO";
+      }
+      
+      
     }
 
     private String getResponseToString(WebResponse response)

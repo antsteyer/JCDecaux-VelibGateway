@@ -23,7 +23,7 @@ namespace VelibGateway_Service
     String StationsOfTheCity(String cityName);
 
     [OperationContract]
-    int NnumberOfBikesAvailable(String stationName);
+    String NumberOfBikesAvailable(String stationName);
 
     [OperationContract]
     String ClearCaches();

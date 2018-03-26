@@ -13,29 +13,80 @@ namespace VelibGateway_Service
 
     private VelibWeb velibWeb;
     private static String key = "932c426b59237c8d4817475895cb9ec5b50f3ec1";
-    private String contractsCache = "";
 
-    public string CitiesInContract(string contractName)
+    // Service Caches
+    private static String contractsCache = "";
+    private static String stationsCache = "";
+    private static String lastContractName = "";
+    private static String bikesCache = "";
+    private static String lastStationName = "";
+
+    public string CitiesInContract(String contractName)
     {
-      throw new NotImplementedException();
+      contractName = contractName.ToUpper();
+      Boolean contractFound = false;
+
+      velibWeb = new VelibWeb(key);
+      var response = velibWeb.ConnectToAPI("contracts?");
+      if (response.Equals("KO"))
+      {
+        return "Error with API.";
+      }
+      var contracts = JsonConvert.DeserializeObject<List<Contract>>(response);
+
+      String responseToClient = "----------| Cities in \"" + contractName + "\" | ---------\n";
+
+      foreach (Contract contract in contracts)
+      {
+        if (contract.name.ToUpper().Equals(contractName))
+        {
+          contractFound = true;
+          foreach (String city in contract.cities)
+          {
+            responseToClient += city + ", ";
+          }
+          break;
+        }
+      }
+      if (contractFound)
+      {
+        // Remove last ,
+        responseToClient = responseToClient.Remove(responseToClient.Length - 1);
+      }
+      else
+      {
+        responseToClient += "\nContract name not found.";
+      }
+
+      responseToClient += "\n--------------------------------";
+      return responseToClient;
     }
 
     public String ClearCaches()
     {
       contractsCache = "";
-      return "Caches cleaned.\n";
+      stationsCache = "";
+      lastContractName = "";
+      bikesCache = "";
+      lastStationName = "";
+      return "Caches cleaned.";
     }
 
     public string Contracts()
     {
-      velibWeb = new VelibWeb(key);
-      var response = velibWeb.ConnectToAPI("contracts?");
-      var contracts = JsonConvert.DeserializeObject<List<Contract>>(response);
-      String responseToClient = "----------| Contracts | ---------\n";
+      String responseToClient = "----------| Contracts |----------\n";
       if (!contractsCache.Equals(""))
         responseToClient += contractsCache;
       else
       {
+        velibWeb = new VelibWeb(key);
+        var response = velibWeb.ConnectToAPI("contracts?");
+        if (response.Equals("KO"))
+        {
+          return "Error with API.";
+        }
+
+        var contracts = JsonConvert.DeserializeObject<List<Contract>>(response);
         contractsCache = "";
         foreach (Contract contract in contracts)
         {
@@ -45,27 +96,95 @@ namespace VelibGateway_Service
           contractsCache += ", ";
         }
         // Remove the last ,
-        contractsCache.Remove(contractsCache.Length - 1);
+        contractsCache = contractsCache.Remove(contractsCache.Length - 1);
         responseToClient += contractsCache;
-        
+
       }
-      responseToClient += "\n| Contracts ending with * contains several cities. You can use the command /citiesincontract <nameofcontract> to see these list." +
+      responseToClient += "\n\nContracts ending with * contain several cities. You can use the command /citiesincontract <nameofcontract> to see these list." +
           " All of the cities stations can be found with the global contract name.\n";
       responseToClient += "--------------------------------";
       return responseToClient;
     }
 
-    public int NnumberOfBikesAvailable(string stationName)
+    public string NumberOfBikesAvailable(String stationName)
     {
-      throw new NotImplementedException();
+      stationName = stationName.ToUpper();
+      String responseToClient = "";
+      if (stationName.Equals(lastStationName))
+      {
+        responseToClient += "Number of bikes available at \"" + stationName + "\" : ";
+        responseToClient += bikesCache;
+      }
+      else
+      {
+        velibWeb = new VelibWeb(key);
+        var response = velibWeb.ConnectToAPI("stations?");
+        if (response.Equals("KO"))
+        {
+          return "Error.";
+        }
+
+        var stations = JsonConvert.DeserializeObject<List<Station>>(response);
+        lastStationName = "";
+        bikesCache = "";
+
+        foreach (Station station in stations)
+        {
+          if (station.name.Contains(stationName))
+          {
+            lastStationName = stationName;
+            bikesCache = station.available_bikes.ToString();
+            break;
+          }
+        }
+        // If station not found
+        if (lastStationName.Equals(""))
+        {
+          responseToClient += "Station not found.";
+        }
+        else
+        {
+          responseToClient += "Number of bikes available at \"" + stationName + "\" : ";
+          responseToClient += bikesCache;
+        }
+      }
+      return responseToClient;
     }
 
-    public string StationsOfTheCity(string cityName)
+    public string StationsOfTheCity(String cityName)
     {
-      throw new NotImplementedException();
+
+      String responseToClient = "----------| Stations |----------\n";
+      if (lastContractName.Equals(cityName.ToUpper()))
+      {
+        responseToClient += stationsCache;
+      }
+      else
+      {
+        velibWeb = new VelibWeb(key);
+        var response = velibWeb.ConnectToAPI("stations?contract=" + cityName.ToUpper());
+        if (response.Equals("KO"))
+        {
+          return "City name does not exist.";
+        }
+        var stations = JsonConvert.DeserializeObject<List<Station>>(response);
+
+        lastContractName = cityName.ToUpper();
+        stationsCache = "";
+        foreach (Station station in stations)
+        {
+          stationsCache += station.name + ", ";
+        }
+        stationsCache = stationsCache.Remove(stationsCache.Length - 1);
+        responseToClient += stationsCache;
+      }
+
+      responseToClient += "\n";
+      responseToClient += "--------------------------------";
+      return responseToClient;
     }
 
-    public string TestConnexion(string clientID)
+    public string TestConnexion(String clientID)
     {
       return "From Server | Connexion established with : " + clientID;
     }
