@@ -21,34 +21,53 @@ namespace VelibGateway_ClientConsole
         Console.Write(">_ ");
         String command = Console.ReadLine();
         String contractName;
+        var watch;
         Console.WriteLine();
         switch (command) {
           case "/exit":
             exit = true;
             break;
           case "/test":
+            watch = System.Diagnostics.Stopwatch.StartNew();
             Console.WriteLine(client.TestConnexion("Client Console"));
+            watch.Stop();
+            Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
           case "/contracts":
+            watch = System.Diagnostics.Stopwatch.StartNew();
             Console.WriteLine(client.Contracts());
+            watch.Stop();
+            Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
           case "/citiesincontract":
             Console.Write("Enter the name of the contract : ");
             contractName = Console.ReadLine();
+            watch = System.Diagnostics.Stopwatch.StartNew();
             Console.WriteLine(client.CitiesInContract(contractName));
+            watch.Stop();
+            Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
           case "/stations":
             Console.Write("Enter the name of the city : ");
             contractName = Console.ReadLine();
+            watch = System.Diagnostics.Stopwatch.StartNew();
             Console.WriteLine(client.StationsOfTheCity(contractName));
+            watch.Stop();
+            Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
           case "/bikes":
             Console.Write("Enter the name of the station : ");
             String stationName = Console.ReadLine();
+            watch = System.Diagnostics.Stopwatch.StartNew();
             Console.WriteLine(client.NumberOfBikesAvailable(stationName));
+            watch.Stop();
+            Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
           case "/clear":
+            watch = System.Diagnostics.Stopwatch.StartNew();
             Console.WriteLine(client.ClearCaches());
+            watch.Stop();
+            Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
           case "/help":
             Console.WriteLine(help());
