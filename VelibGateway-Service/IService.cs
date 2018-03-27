@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using VelibGateway_Service.model;
 
 namespace VelibGateway_Service
 {
@@ -14,16 +15,16 @@ namespace VelibGateway_Service
     String TestConnexion(String clientID);
 
     [OperationContract]
-    String Contracts();
+    List<Contract> Contracts();
 
     [OperationContract]
-    String CitiesInContract(String contractName);
+    List<String> CitiesInContract(String contractName);
 
     [OperationContract]
-    String StationsOfTheCity(String cityName);
+    List<Station> StationsOfTheCity(String cityName);
 
     [OperationContract]
-    String NumberOfBikesAvailable(String stationName);
+    Dictionary<String, int> NumberOfBikesAvailable(String stationName);
 
     [OperationContract]
     String ClearCaches();

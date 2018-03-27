@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VelibGateway_Service.model
 {
-  class Contract
+  public class Contract
   {
     public String name { get; set; }
     public List<String> cities { get; set; }
