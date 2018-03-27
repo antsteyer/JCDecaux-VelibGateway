@@ -23,7 +23,8 @@ namespace VelibGateway_ClientConsole
         String contractName;
         System.Diagnostics.Stopwatch watch;
         Console.WriteLine();
-        switch (command) {
+        switch (command)
+        {
           case "/exit":
             exit = true;
             break;
@@ -35,7 +36,18 @@ namespace VelibGateway_ClientConsole
             break;
           case "/contracts":
             watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(client.Contracts());
+            Contract[] contracts = client.Contracts();
+            if (contracts == null)
+            {
+              Console.WriteLine("Command Failed.");
+              watch.Stop();
+              break;
+            }
+            foreach (Contract contract in contracts)
+            {
+              Console.WriteLine("- "+contract.name);
+            }
+
             watch.Stop();
             Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
@@ -43,29 +55,51 @@ namespace VelibGateway_ClientConsole
             Console.Write("Enter the name of the contract : ");
             contractName = Console.ReadLine();
             watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(client.CitiesInContract(contractName));
+            String[] cities = client.CitiesInContract(contractName);
             watch.Stop();
+            if ((cities == null) || (cities.Length == 0))
+            {
+              Console.WriteLine("Wrong contract name.");
+              break;
+            }
+            foreach (String city in cities)
+            {
+              Console.WriteLine("- "+city);
+            }
+
             Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
           case "/stations":
             Console.Write("Enter the name of the city : ");
             contractName = Console.ReadLine();
             watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(client.StationsOfTheCity(contractName));
+            Station[] stations = client.StationsOfTheCity(contractName);
             watch.Stop();
+            if ((stations == null) || (stations.Length == 0))
+            {
+              Console.WriteLine("Wrong city name.");
+              break;
+            }
+            foreach (Station station in stations)
+            {
+              Console.WriteLine("- " + station.name);
+            }
             Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
           case "/bikes":
             Console.Write("Enter the name of the station : ");
             String stationName = Console.ReadLine();
             watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(client.NumberOfBikesAvailable(stationName));
-            watch.Stop();
-            Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
-            break;
-          case "/clear":
-            watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(client.ClearCaches());
+            Dictionary<String, int> bikes = client.NumberOfBikesAvailable(stationName);
+            if ((bikes == null) || (bikes.Count() == 0))
+            {
+              Console.WriteLine("Wrong station name");
+              break;
+            }
+            foreach (String key in bikes.Keys)
+            {
+              Console.WriteLine("- Station " + key + " : " + bikes[key] + " bikes available.");
+            }
             watch.Stop();
             Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;
@@ -82,13 +116,12 @@ namespace VelibGateway_ClientConsole
 
     static string help()
     {
-      return  "----------| Commands |----------\n"
+      return "----------| Commands |----------\n"
             + "/test : Test the connection with the server.\n"
             + "/contracts : Print all the Velib contracts (cities).\n"
             + "/citiesincontract : Print all the cities in the velib contract given.\n"
             + "/stations : Print all the stations in the velib contract given.\n"
             + "/bikes : Number of bikes available in the given velib station.\n"
-            + "/clear : Clear the caches used by Velib Gateway Service.\n"
             + "/exit : Exit the application.\n"
             + "--------------------------------";
     }

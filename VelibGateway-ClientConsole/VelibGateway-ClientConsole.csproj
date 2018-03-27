@@ -54,11 +54,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\VelibServiceReference\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\VelibServiceReference\service.wsdl" />
     <None Include="Connected Services\VelibServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\VelibServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\VelibServiceReference\VelibGateway_ClientConsole.VelibServiceReference.Contract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\VelibServiceReference\VelibGateway_ClientConsole.VelibServiceReference.Station.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\VelibServiceReference\VelibGateway_Service.model.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

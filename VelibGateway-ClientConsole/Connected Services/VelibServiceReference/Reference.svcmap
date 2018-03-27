@@ -25,6 +25,8 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="0b2227ec-4824-4247-9fc3-5f36cc35ac55" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/VelibService/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="90e60b45-b148-44cf-afba-7b96371b5736" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/VelibService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="63b5a882-74b8-4711-9318-4526b040b3dc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/VelibService/mex" />
+    <MetadataFile FileName="VelibGateway_Service.model.xsd" MetadataType="Schema" ID="bf45148e-eda7-453e-9d97-b8a77ce29546" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/VelibService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="9bd8b739-ead7-4153-9d21-c381ae981639" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/VelibService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
