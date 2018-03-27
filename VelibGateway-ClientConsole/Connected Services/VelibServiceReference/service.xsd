@@ -66,19 +66,7 @@
   <xs:element name="NumberOfBikesAvailableResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NumberOfBikesAvailableResult" nillable="true" type="q4:ArrayOfKeyValueOfstringint" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ClearCaches">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ClearCachesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ClearCachesResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NumberOfBikesAvailableResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

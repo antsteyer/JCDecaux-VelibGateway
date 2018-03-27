@@ -45,7 +45,7 @@ namespace VelibGateway_ClientConsole
             }
             foreach (Contract contract in contracts)
             {
-              Console.WriteLine("- "+contract.name);
+              Console.WriteLine("- " + contract.name);
             }
 
             watch.Stop();
@@ -64,7 +64,7 @@ namespace VelibGateway_ClientConsole
             }
             foreach (String city in cities)
             {
-              Console.WriteLine("- "+city);
+              Console.WriteLine("- " + city);
             }
 
             Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
@@ -90,16 +90,14 @@ namespace VelibGateway_ClientConsole
             Console.Write("Enter the name of the station : ");
             String stationName = Console.ReadLine();
             watch = System.Diagnostics.Stopwatch.StartNew();
-            Dictionary<String, int> bikes = client.NumberOfBikesAvailable(stationName);
-            if ((bikes == null) || (bikes.Count() == 0))
+            int bikes = client.NumberOfBikesAvailable(stationName);
+            if (bikes < 0)
             {
               Console.WriteLine("Wrong station name");
               break;
             }
-            foreach (String key in bikes.Keys)
-            {
-              Console.WriteLine("- Station " + key + " : " + bikes[key] + " bikes available.");
-            }
+
+            Console.WriteLine(bikes + " bikes available.");
             watch.Stop();
             Console.WriteLine("(Command executed in " + watch.ElapsedMilliseconds + "ms.)");
             break;

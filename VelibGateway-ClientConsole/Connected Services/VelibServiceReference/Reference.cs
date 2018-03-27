@@ -417,16 +417,10 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
         System.Threading.Tasks.Task<VelibGateway_ClientConsole.VelibServiceReference.Station[]> StationsOfTheCityAsync(string cityName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NumberOfBikesAvailableResponse")]
-        System.Collections.Generic.Dictionary<string, int> NumberOfBikesAvailable(string stationName);
+        int NumberOfBikesAvailable(string stationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NumberOfBikesAvailableResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> NumberOfBikesAvailableAsync(string stationName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ClearCaches", ReplyAction="http://tempuri.org/IService/ClearCachesResponse")]
-        string ClearCaches();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ClearCaches", ReplyAction="http://tempuri.org/IService/ClearCachesResponse")]
-        System.Threading.Tasks.Task<string> ClearCachesAsync();
+        System.Threading.Tasks.Task<int> NumberOfBikesAvailableAsync(string stationName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -488,20 +482,12 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
             return base.Channel.StationsOfTheCityAsync(cityName);
         }
         
-        public System.Collections.Generic.Dictionary<string, int> NumberOfBikesAvailable(string stationName) {
+        public int NumberOfBikesAvailable(string stationName) {
             return base.Channel.NumberOfBikesAvailable(stationName);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> NumberOfBikesAvailableAsync(string stationName) {
+        public System.Threading.Tasks.Task<int> NumberOfBikesAvailableAsync(string stationName) {
             return base.Channel.NumberOfBikesAvailableAsync(stationName);
-        }
-        
-        public string ClearCaches() {
-            return base.Channel.ClearCaches();
-        }
-        
-        public System.Threading.Tasks.Task<string> ClearCachesAsync() {
-            return base.Channel.ClearCachesAsync();
         }
     }
 }
