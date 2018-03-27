@@ -24,9 +24,7 @@ namespace VelibGateway_Service
     List<Station> StationsOfTheCity(String cityName);
 
     [OperationContract]
-    Dictionary<String, int> NumberOfBikesAvailable(String stationName);
-
-    [OperationContract]
-    String ClearCaches();
+    int NumberOfBikesAvailable(String stationName);
+    
   }
 }

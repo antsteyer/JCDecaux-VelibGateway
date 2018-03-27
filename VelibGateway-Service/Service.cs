@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Caching;
 using VelibGateway_Service.model;
 using Newtonsoft.Json;
 
@@ -15,95 +16,130 @@ namespace VelibGateway_Service
     private static String key = "932c426b59237c8d4817475895cb9ec5b50f3ec1";
 
     // Service Caches
-    private static String contractsCache = "";
-    private static String stationsCache = "";
-    private static String lastContractName = "";
-    private static String bikesCache = "";
-    private static String lastStationName = "";
+    private static ObjectCache contractsCache = MemoryCache.Default;
+    private static ObjectCache citiesCache = MemoryCache.Default;
+    private static ObjectCache stationsCache = MemoryCache.Default;
+    private static ObjectCache bikesCache = MemoryCache.Default;
 
     public List<String> CitiesInContract(String contractName)
     {
       contractName = contractName.ToUpper();
-
-      velibWeb = new VelibWeb(key);
-      var response = velibWeb.ConnectToAPI("contracts?");
-      if (response.Equals("KO"))
+      if (citiesCache.Contains(contractName))
       {
-        return null;
+        return (List<String>)citiesCache.Get(contractName);
       }
-      List<Contract> contracts = JsonConvert.DeserializeObject<List<Contract>>(response);
-
-      List<String> responseToClient = new List<String>();
-      foreach (Contract contract in contracts)
+      else
       {
-        if (contract.name.ToUpper().Equals(contractName))
+        velibWeb = new VelibWeb(key);
+        var response = velibWeb.ConnectToAPI("contracts?");
+        if (response.Equals("KO"))
         {
-          foreach (String city in contract.cities)
-          {
-            responseToClient.Add(city);
-          }
-          break;
+          return null;
         }
-      }
-      return responseToClient;
-    }
+        List<Contract> contracts = JsonConvert.DeserializeObject<List<Contract>>(response);
 
-    public String ClearCaches()
-    {
-      contractsCache = "";
-      stationsCache = "";
-      lastContractName = "";
-      bikesCache = "";
-      lastStationName = "";
-      return "Caches cleaned.";
+        List<String> responseToClient = new List<String>();
+        foreach (Contract contract in contracts)
+        {
+          if (contract.name.ToUpper().Equals(contractName))
+          {
+            foreach (String city in contract.cities)
+            {
+              responseToClient.Add(city);
+            }
+            break;
+          }
+        }
+        CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
+        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+        contractsCache.Add(contractName, responseToClient, cacheItemPolicy);
+        return responseToClient;
+      }
+      
     }
 
     public List<Contract> Contracts()
     {
-      velibWeb = new VelibWeb(key);
-      var response = velibWeb.ConnectToAPI("contracts?");
-      if (response.Equals("KO"))
+      if(contractsCache.Contains("Contracts"))
       {
-        return null;
+        return (List<Contract>)contractsCache.Get("Contracts");
       }
-      List<Contract> contracts = JsonConvert.DeserializeObject<List<Contract>>(response);
-      return contracts;
+      else
+      {
+        velibWeb = new VelibWeb(key);
+        var response = velibWeb.ConnectToAPI("contracts?");
+        if (response.Equals("KO"))
+        {
+          return null;
+        }
+        List<Contract> contracts = JsonConvert.DeserializeObject<List<Contract>>(response);
+        CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
+        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+        contractsCache.Add("Contracts", contracts, cacheItemPolicy);
+        return contracts;
+      }
+      
     }
 
-    public Dictionary<String, int> NumberOfBikesAvailable(String stationName)
+    public int NumberOfBikesAvailable(String stationName)
     {
       stationName = stationName.ToUpper();
-      velibWeb = new VelibWeb(key);
-      var response = velibWeb.ConnectToAPI("stations?");
-      if (response.Equals("KO"))
+
+      if(bikesCache.Contains(stationName))
       {
-        return null;
+        return (int)bikesCache.Get(stationName);
       }
-
-      var stations = JsonConvert.DeserializeObject<List<Station>>(response);
-      Dictionary<String, int> responseToClient = new Dictionary<string, int>();
-
-      foreach (Station station in stations)
+      else
       {
-        if (station.name.Contains(stationName))
+        velibWeb = new VelibWeb(key);
+        var response = velibWeb.ConnectToAPI("stations?");
+        if (response.Equals("KO"))
         {
-          responseToClient.Add(station.name, station.available_bikes);
+          return -1;
         }
-      }
 
-      return responseToClient;
+        var stations = JsonConvert.DeserializeObject<List<Station>>(response);
+        int responseToClient = -1;
+        foreach (Station station in stations)
+        {
+          if (station.name.Equals(stationName))
+          {
+            responseToClient = station.available_bikes;
+            CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
+            cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+            contractsCache.Add(stationName, responseToClient, cacheItemPolicy);
+            break;
+          }
+        }
+
+        return responseToClient;
+      }
+      
     }
 
     public List<Station> StationsOfTheCity(String cityName)
     {
-      velibWeb = new VelibWeb(key);
-      var response = velibWeb.ConnectToAPI("stations?contract=" + cityName.ToUpper());
-      if(response.Equals("KO"))
+      cityName = cityName.ToUpper();
+      if(stationsCache.Contains(cityName))
       {
-        return null;
+        return (List<Station>)stationsCache.Get(cityName);
       }
-      var stations = JsonConvert.DeserializeObject<List<Station>>(response);
-      return stations;
+      else
+      {
+        velibWeb = new VelibWeb(key);
+        var response = velibWeb.ConnectToAPI("stations?contract=" + cityName);
+        if (response.Equals("KO"))
+        {
+          return null;
+        }
+        var stations = JsonConvert.DeserializeObject<List<Station>>(response);
+
+        CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
+        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+        contractsCache.Add(cityName, stations, cacheItemPolicy);
+        return stations;
+      }
+      
     }
 
     public string TestConnexion(String clientID)
