@@ -41,6 +41,8 @@
       this.stationsLabel = new System.Windows.Forms.Label();
       this.panel4 = new System.Windows.Forms.Panel();
       this.perfLabel = new System.Windows.Forms.Label();
+      this.JCDlabel = new System.Windows.Forms.Label();
+      this.mapLabel = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
@@ -98,6 +100,7 @@
       // 
       // panel2
       // 
+      this.panel2.Controls.Add(this.mapLabel);
       this.panel2.Controls.Add(this.gMap);
       this.panel2.Controls.Add(this.BikesNumberlabel);
       this.panel2.Controls.Add(this.Bikeslabel);
@@ -139,10 +142,11 @@
       this.BikesNumberlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.BikesNumberlabel.Font = new System.Drawing.Font("Playbill", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.BikesNumberlabel.Font = new System.Drawing.Font("Playbill", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.BikesNumberlabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
       this.BikesNumberlabel.Location = new System.Drawing.Point(5, 56);
       this.BikesNumberlabel.Name = "BikesNumberlabel";
-      this.BikesNumberlabel.Size = new System.Drawing.Size(222, 161);
+      this.BikesNumberlabel.Size = new System.Drawing.Size(222, 126);
       this.BikesNumberlabel.TabIndex = 6;
       this.BikesNumberlabel.Text = "0";
       this.BikesNumberlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -175,6 +179,7 @@
       this.StationsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.StationsList.FormattingEnabled = true;
       this.StationsList.HorizontalScrollbar = true;
+      this.StationsList.IntegralHeight = false;
       this.StationsList.ItemHeight = 24;
       this.StationsList.Location = new System.Drawing.Point(5, 56);
       this.StationsList.Name = "StationsList";
@@ -197,6 +202,7 @@
       // panel4
       // 
       this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+      this.panel4.Controls.Add(this.JCDlabel);
       this.panel4.Controls.Add(this.perfLabel);
       this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
       this.panel4.Location = new System.Drawing.Point(0, 0);
@@ -213,6 +219,29 @@
       this.perfLabel.Name = "perfLabel";
       this.perfLabel.Size = new System.Drawing.Size(0, 13);
       this.perfLabel.TabIndex = 0;
+      // 
+      // JCDlabel
+      // 
+      this.JCDlabel.AutoSize = true;
+      this.JCDlabel.Dock = System.Windows.Forms.DockStyle.Left;
+      this.JCDlabel.Font = new System.Drawing.Font("Playbill", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.JCDlabel.ForeColor = System.Drawing.SystemColors.Window;
+      this.JCDlabel.Location = new System.Drawing.Point(5, 5);
+      this.JCDlabel.Name = "JCDlabel";
+      this.JCDlabel.Size = new System.Drawing.Size(88, 21);
+      this.JCDlabel.TabIndex = 1;
+      this.JCDlabel.Text = "JC-Decaux Velib";
+      // 
+      // mapLabel
+      // 
+      this.mapLabel.Font = new System.Drawing.Font("Playbill", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.mapLabel.Location = new System.Drawing.Point(5, 182);
+      this.mapLabel.Name = "mapLabel";
+      this.mapLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+      this.mapLabel.Size = new System.Drawing.Size(222, 51);
+      this.mapLabel.TabIndex = 8;
+      this.mapLabel.Text = "Map";
+      this.mapLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // Form1
       // 
@@ -252,6 +281,8 @@
     private GMap.NET.WindowsForms.GMapControl gMap;
     private System.Windows.Forms.Button LoadContractsbutton;
     private System.Windows.Forms.Label perfLabel;
+    private System.Windows.Forms.Label JCDlabel;
+    private System.Windows.Forms.Label mapLabel;
   }
 }
 

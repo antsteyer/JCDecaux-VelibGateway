@@ -14,13 +14,14 @@ namespace VelibGateway_Client
 {
   public partial class Form1 : Form
   {
-    private ServiceClient client;
-    private Station[] stations;
-    private System.Diagnostics.Stopwatch watch;
+    private ServiceClient client; // client of the SOAP Service
+    private Station[] stations; // Stocked to find the position of a station
+    private System.Diagnostics.Stopwatch watch; // Used to calculate the execution time of each request
 
     public Form1()
     {
       InitializeComponent();
+      JCDlabel.Text += " v.1.0.1";
 
       // Initialize Map
       gMap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleMap;
@@ -75,12 +76,14 @@ namespace VelibGateway_Client
         }
       }
       perfLabel.Text = "Time to load Bikes : " + watch.ElapsedMilliseconds + " ms.";
+      
+      // Zoom reset
+      gMap.Zoom = 17;
+      // Update map with the position of the station
       gMap.Position = new PointLatLng(p.lat,p.lng);
 
       BikesNumberlabel.Text = bikes.ToString();
     }
-
-
   }
 
 }
