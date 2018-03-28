@@ -16,6 +16,7 @@ namespace VelibGateway_Client
   {
     private ServiceClient client;
     private Station[] stations;
+    private System.Diagnostics.Stopwatch watch;
 
     public Form1()
     {
@@ -27,31 +28,44 @@ namespace VelibGateway_Client
       gMap.MaxZoom = 100;
       gMap.Zoom = 17;
 
+      // Initialize Service
       client = new ServiceClient();
-      Contract[] contracts = client.Contracts();
       
+    }
+
+    private void LoadContractsbutton_Click(object sender, EventArgs e)
+    {
+      ContractsList.Items.Clear();
+      watch = System.Diagnostics.Stopwatch.StartNew();
+      Contract[] contracts = client.Contracts();
+      watch.Stop();
       foreach (Contract contract in contracts)
       {
         ContractsList.Items.Add(contract.name);
       }
+      perfLabel.Text = "Time to load Contracts : "+watch.ElapsedMilliseconds+" ms.";
     }
 
     private void ContractsList_SelectedIndexChanged(object sender, EventArgs e)
     {
       StationsList.Items.Clear();
       String contractName = (String) ContractsList.SelectedItem;
+      watch = System.Diagnostics.Stopwatch.StartNew();
       stations = client.StationsOfTheCity(contractName);
-
+      watch.Stop();
       foreach (Station station in stations)
       {
         StationsList.Items.Add(station.name);
       }
+      perfLabel.Text = "Time to load Stations : " + watch.ElapsedMilliseconds + " ms.";
     }
 
     private void StationsList_SelectedIndexChanged(object sender, EventArgs e)
     {
       String stationName = (String)StationsList.SelectedItem;
+      watch = System.Diagnostics.Stopwatch.StartNew();
       int bikes = client.NumberOfBikesAvailable(stationName);
+      watch.Stop();
       Position p = new Position();
       foreach (Station station in stations)
       {
@@ -60,11 +74,13 @@ namespace VelibGateway_Client
           p = station.position;
         }
       }
-      
+      perfLabel.Text = "Time to load Bikes : " + watch.ElapsedMilliseconds + " ms.";
       gMap.Position = new PointLatLng(p.lat,p.lng);
 
       BikesNumberlabel.Text = bikes.ToString();
     }
+
+
   }
 
 }

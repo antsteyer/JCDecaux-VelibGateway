@@ -30,19 +30,21 @@
         {
       this.contractsLabel = new System.Windows.Forms.Label();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.LoadContractsbutton = new System.Windows.Forms.Button();
       this.ContractsList = new System.Windows.Forms.ListBox();
       this.panel2 = new System.Windows.Forms.Panel();
+      this.gMap = new GMap.NET.WindowsForms.GMapControl();
       this.BikesNumberlabel = new System.Windows.Forms.Label();
       this.Bikeslabel = new System.Windows.Forms.Label();
       this.panel3 = new System.Windows.Forms.Panel();
       this.StationsList = new System.Windows.Forms.ListBox();
       this.stationsLabel = new System.Windows.Forms.Label();
       this.panel4 = new System.Windows.Forms.Panel();
-      this.gMap = new GMap.NET.WindowsForms.GMapControl();
-      this.LoadContractsbutton = new System.Windows.Forms.Button();
+      this.perfLabel = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
+      this.panel4.SuspendLayout();
       this.SuspendLayout();
       // 
       // contractsLabel
@@ -68,8 +70,23 @@
       this.panel1.Size = new System.Drawing.Size(282, 414);
       this.panel1.TabIndex = 4;
       // 
+      // LoadContractsbutton
+      // 
+      this.LoadContractsbutton.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.LoadContractsbutton.Font = new System.Drawing.Font("Playbill", 30F);
+      this.LoadContractsbutton.Location = new System.Drawing.Point(5, 364);
+      this.LoadContractsbutton.Name = "LoadContractsbutton";
+      this.LoadContractsbutton.Size = new System.Drawing.Size(272, 45);
+      this.LoadContractsbutton.TabIndex = 5;
+      this.LoadContractsbutton.Text = "Load";
+      this.LoadContractsbutton.UseVisualStyleBackColor = true;
+      this.LoadContractsbutton.Click += new System.EventHandler(this.LoadContractsbutton_Click);
+      // 
       // ContractsList
       // 
+      this.ContractsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.ContractsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ContractsList.FormattingEnabled = true;
       this.ContractsList.ItemHeight = 24;
@@ -90,12 +107,42 @@
       this.panel2.Size = new System.Drawing.Size(232, 414);
       this.panel2.TabIndex = 5;
       // 
+      // gMap
+      // 
+      this.gMap.Bearing = 0F;
+      this.gMap.CanDragMap = true;
+      this.gMap.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.gMap.EmptyTileColor = System.Drawing.Color.Navy;
+      this.gMap.GrayScaleMode = false;
+      this.gMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+      this.gMap.LevelsKeepInMemmory = 5;
+      this.gMap.Location = new System.Drawing.Point(5, 230);
+      this.gMap.MarkersEnabled = true;
+      this.gMap.MaxZoom = 2;
+      this.gMap.MinZoom = 2;
+      this.gMap.MouseWheelZoomEnabled = true;
+      this.gMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+      this.gMap.Name = "gMap";
+      this.gMap.NegativeMode = false;
+      this.gMap.PolygonsEnabled = true;
+      this.gMap.RetryLoadTile = 0;
+      this.gMap.RoutesEnabled = true;
+      this.gMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+      this.gMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+      this.gMap.ShowTileGridLines = false;
+      this.gMap.Size = new System.Drawing.Size(222, 179);
+      this.gMap.TabIndex = 7;
+      this.gMap.Zoom = 0D;
+      // 
       // BikesNumberlabel
       // 
+      this.BikesNumberlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.BikesNumberlabel.Font = new System.Drawing.Font("Playbill", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.BikesNumberlabel.Location = new System.Drawing.Point(5, 56);
       this.BikesNumberlabel.Name = "BikesNumberlabel";
-      this.BikesNumberlabel.Size = new System.Drawing.Size(228, 161);
+      this.BikesNumberlabel.Size = new System.Drawing.Size(222, 161);
       this.BikesNumberlabel.TabIndex = 6;
       this.BikesNumberlabel.Text = "0";
       this.BikesNumberlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -149,49 +196,23 @@
       // 
       // panel4
       // 
+      this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+      this.panel4.Controls.Add(this.perfLabel);
       this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
       this.panel4.Location = new System.Drawing.Point(0, 0);
       this.panel4.Name = "panel4";
+      this.panel4.Padding = new System.Windows.Forms.Padding(5);
       this.panel4.Size = new System.Drawing.Size(800, 30);
       this.panel4.TabIndex = 7;
       // 
-      // gMap
+      // perfLabel
       // 
-      this.gMap.Bearing = 0F;
-      this.gMap.CanDragMap = true;
-      this.gMap.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.gMap.EmptyTileColor = System.Drawing.Color.Navy;
-      this.gMap.GrayScaleMode = false;
-      this.gMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-      this.gMap.LevelsKeepInMemmory = 5;
-      this.gMap.Location = new System.Drawing.Point(5, 230);
-      this.gMap.MarkersEnabled = true;
-      this.gMap.MaxZoom = 2;
-      this.gMap.MinZoom = 2;
-      this.gMap.MouseWheelZoomEnabled = true;
-      this.gMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-      this.gMap.Name = "gMap";
-      this.gMap.NegativeMode = false;
-      this.gMap.PolygonsEnabled = true;
-      this.gMap.RetryLoadTile = 0;
-      this.gMap.RoutesEnabled = true;
-      this.gMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-      this.gMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-      this.gMap.ShowTileGridLines = false;
-      this.gMap.Size = new System.Drawing.Size(222, 179);
-      this.gMap.TabIndex = 7;
-      this.gMap.Zoom = 0D;
-      // 
-      // LoadContractsbutton
-      // 
-      this.LoadContractsbutton.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.LoadContractsbutton.Font = new System.Drawing.Font("Playbill", 30F);
-      this.LoadContractsbutton.Location = new System.Drawing.Point(5, 364);
-      this.LoadContractsbutton.Name = "LoadContractsbutton";
-      this.LoadContractsbutton.Size = new System.Drawing.Size(272, 45);
-      this.LoadContractsbutton.TabIndex = 5;
-      this.LoadContractsbutton.Text = "Load";
-      this.LoadContractsbutton.UseVisualStyleBackColor = true;
+      this.perfLabel.AutoSize = true;
+      this.perfLabel.Dock = System.Windows.Forms.DockStyle.Right;
+      this.perfLabel.Location = new System.Drawing.Point(795, 5);
+      this.perfLabel.Name = "perfLabel";
+      this.perfLabel.Size = new System.Drawing.Size(0, 13);
+      this.perfLabel.TabIndex = 0;
       // 
       // Form1
       // 
@@ -203,11 +224,16 @@
       this.Controls.Add(this.panel3);
       this.Controls.Add(this.panel2);
       this.Controls.Add(this.panel1);
+      this.MaximizeBox = false;
+      this.MaximumSize = new System.Drawing.Size(816, 489);
+      this.MinimumSize = new System.Drawing.Size(816, 489);
       this.Name = "Form1";
       this.Text = "Velib Gateway Client";
       this.panel1.ResumeLayout(false);
       this.panel2.ResumeLayout(false);
       this.panel3.ResumeLayout(false);
+      this.panel4.ResumeLayout(false);
+      this.panel4.PerformLayout();
       this.ResumeLayout(false);
 
         }
@@ -225,6 +251,7 @@
     private System.Windows.Forms.ListBox StationsList;
     private GMap.NET.WindowsForms.GMapControl gMap;
     private System.Windows.Forms.Button LoadContractsbutton;
+    private System.Windows.Forms.Label perfLabel;
   }
 }
 
