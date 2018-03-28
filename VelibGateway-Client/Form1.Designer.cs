@@ -30,14 +30,16 @@
         {
       this.contractsLabel = new System.Windows.Forms.Label();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.ContractsList = new System.Windows.Forms.ListBox();
       this.panel2 = new System.Windows.Forms.Panel();
       this.BikesNumberlabel = new System.Windows.Forms.Label();
       this.Bikeslabel = new System.Windows.Forms.Label();
       this.panel3 = new System.Windows.Forms.Panel();
+      this.StationsList = new System.Windows.Forms.ListBox();
       this.stationsLabel = new System.Windows.Forms.Label();
       this.panel4 = new System.Windows.Forms.Panel();
-      this.ContractsList = new System.Windows.Forms.ListBox();
-      this.StationsList = new System.Windows.Forms.ListBox();
+      this.gMap = new GMap.NET.WindowsForms.GMapControl();
+      this.LoadContractsbutton = new System.Windows.Forms.Button();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
@@ -57,31 +59,43 @@
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.LoadContractsbutton);
       this.panel1.Controls.Add(this.ContractsList);
       this.panel1.Controls.Add(this.contractsLabel);
-      this.panel1.Location = new System.Drawing.Point(0, 46);
+      this.panel1.Location = new System.Drawing.Point(0, 36);
       this.panel1.Name = "panel1";
       this.panel1.Padding = new System.Windows.Forms.Padding(5);
-      this.panel1.Size = new System.Drawing.Size(282, 404);
+      this.panel1.Size = new System.Drawing.Size(282, 414);
       this.panel1.TabIndex = 4;
+      // 
+      // ContractsList
+      // 
+      this.ContractsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.ContractsList.FormattingEnabled = true;
+      this.ContractsList.ItemHeight = 24;
+      this.ContractsList.Location = new System.Drawing.Point(5, 56);
+      this.ContractsList.Name = "ContractsList";
+      this.ContractsList.Size = new System.Drawing.Size(272, 292);
+      this.ContractsList.TabIndex = 4;
+      this.ContractsList.SelectedIndexChanged += new System.EventHandler(this.ContractsList_SelectedIndexChanged);
       // 
       // panel2
       // 
+      this.panel2.Controls.Add(this.gMap);
       this.panel2.Controls.Add(this.BikesNumberlabel);
       this.panel2.Controls.Add(this.Bikeslabel);
-      this.panel2.Location = new System.Drawing.Point(562, 46);
+      this.panel2.Location = new System.Drawing.Point(568, 36);
       this.panel2.Name = "panel2";
       this.panel2.Padding = new System.Windows.Forms.Padding(5);
-      this.panel2.Size = new System.Drawing.Size(238, 404);
+      this.panel2.Size = new System.Drawing.Size(232, 414);
       this.panel2.TabIndex = 5;
       // 
       // BikesNumberlabel
       // 
-      this.BikesNumberlabel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.BikesNumberlabel.Font = new System.Drawing.Font("Playbill", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.BikesNumberlabel.Location = new System.Drawing.Point(5, 56);
       this.BikesNumberlabel.Name = "BikesNumberlabel";
-      this.BikesNumberlabel.Size = new System.Drawing.Size(228, 343);
+      this.BikesNumberlabel.Size = new System.Drawing.Size(228, 161);
       this.BikesNumberlabel.TabIndex = 6;
       this.BikesNumberlabel.Text = "0";
       this.BikesNumberlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -93,7 +107,7 @@
       this.Bikeslabel.Location = new System.Drawing.Point(5, 5);
       this.Bikeslabel.Name = "Bikeslabel";
       this.Bikeslabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-      this.Bikeslabel.Size = new System.Drawing.Size(228, 51);
+      this.Bikeslabel.Size = new System.Drawing.Size(222, 51);
       this.Bikeslabel.TabIndex = 5;
       this.Bikeslabel.Text = "Bikes";
       this.Bikeslabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -102,43 +116,11 @@
       // 
       this.panel3.Controls.Add(this.StationsList);
       this.panel3.Controls.Add(this.stationsLabel);
-      this.panel3.Location = new System.Drawing.Point(283, 46);
+      this.panel3.Location = new System.Drawing.Point(288, 36);
       this.panel3.Name = "panel3";
       this.panel3.Padding = new System.Windows.Forms.Padding(5);
-      this.panel3.Size = new System.Drawing.Size(279, 404);
+      this.panel3.Size = new System.Drawing.Size(274, 414);
       this.panel3.TabIndex = 6;
-      // 
-      // stationsLabel
-      // 
-      this.stationsLabel.Dock = System.Windows.Forms.DockStyle.Top;
-      this.stationsLabel.Font = new System.Drawing.Font("Playbill", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.stationsLabel.Location = new System.Drawing.Point(5, 5);
-      this.stationsLabel.Name = "stationsLabel";
-      this.stationsLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-      this.stationsLabel.Size = new System.Drawing.Size(269, 51);
-      this.stationsLabel.TabIndex = 4;
-      this.stationsLabel.Text = "Stations";
-      this.stationsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      // 
-      // panel4
-      // 
-      this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel4.Location = new System.Drawing.Point(0, 0);
-      this.panel4.Name = "panel4";
-      this.panel4.Size = new System.Drawing.Size(800, 46);
-      this.panel4.TabIndex = 7;
-      // 
-      // ContractsList
-      // 
-      this.ContractsList.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.ContractsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ContractsList.FormattingEnabled = true;
-      this.ContractsList.ItemHeight = 24;
-      this.ContractsList.Location = new System.Drawing.Point(5, 56);
-      this.ContractsList.Name = "ContractsList";
-      this.ContractsList.Size = new System.Drawing.Size(272, 343);
-      this.ContractsList.TabIndex = 4;
-      this.ContractsList.SelectedIndexChanged += new System.EventHandler(this.ContractsList_SelectedIndexChanged);
       // 
       // StationsList
       // 
@@ -149,9 +131,67 @@
       this.StationsList.ItemHeight = 24;
       this.StationsList.Location = new System.Drawing.Point(5, 56);
       this.StationsList.Name = "StationsList";
-      this.StationsList.Size = new System.Drawing.Size(269, 343);
+      this.StationsList.Size = new System.Drawing.Size(264, 353);
       this.StationsList.TabIndex = 5;
       this.StationsList.SelectedIndexChanged += new System.EventHandler(this.StationsList_SelectedIndexChanged);
+      // 
+      // stationsLabel
+      // 
+      this.stationsLabel.Dock = System.Windows.Forms.DockStyle.Top;
+      this.stationsLabel.Font = new System.Drawing.Font("Playbill", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.stationsLabel.Location = new System.Drawing.Point(5, 5);
+      this.stationsLabel.Name = "stationsLabel";
+      this.stationsLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+      this.stationsLabel.Size = new System.Drawing.Size(264, 51);
+      this.stationsLabel.TabIndex = 4;
+      this.stationsLabel.Text = "Stations";
+      this.stationsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      // 
+      // panel4
+      // 
+      this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+      this.panel4.Location = new System.Drawing.Point(0, 0);
+      this.panel4.Name = "panel4";
+      this.panel4.Size = new System.Drawing.Size(800, 30);
+      this.panel4.TabIndex = 7;
+      // 
+      // gMap
+      // 
+      this.gMap.Bearing = 0F;
+      this.gMap.CanDragMap = true;
+      this.gMap.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.gMap.EmptyTileColor = System.Drawing.Color.Navy;
+      this.gMap.GrayScaleMode = false;
+      this.gMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+      this.gMap.LevelsKeepInMemmory = 5;
+      this.gMap.Location = new System.Drawing.Point(5, 230);
+      this.gMap.MarkersEnabled = true;
+      this.gMap.MaxZoom = 2;
+      this.gMap.MinZoom = 2;
+      this.gMap.MouseWheelZoomEnabled = true;
+      this.gMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+      this.gMap.Name = "gMap";
+      this.gMap.NegativeMode = false;
+      this.gMap.PolygonsEnabled = true;
+      this.gMap.RetryLoadTile = 0;
+      this.gMap.RoutesEnabled = true;
+      this.gMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+      this.gMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+      this.gMap.ShowTileGridLines = false;
+      this.gMap.Size = new System.Drawing.Size(222, 179);
+      this.gMap.TabIndex = 7;
+      this.gMap.Zoom = 0D;
+      // 
+      // LoadContractsbutton
+      // 
+      this.LoadContractsbutton.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.LoadContractsbutton.Font = new System.Drawing.Font("Playbill", 30F);
+      this.LoadContractsbutton.Location = new System.Drawing.Point(5, 364);
+      this.LoadContractsbutton.Name = "LoadContractsbutton";
+      this.LoadContractsbutton.Size = new System.Drawing.Size(272, 45);
+      this.LoadContractsbutton.TabIndex = 5;
+      this.LoadContractsbutton.Text = "Load";
+      this.LoadContractsbutton.UseVisualStyleBackColor = true;
       // 
       // Form1
       // 
@@ -183,6 +223,8 @@
     private System.Windows.Forms.Label BikesNumberlabel;
     private System.Windows.Forms.ListBox ContractsList;
     private System.Windows.Forms.ListBox StationsList;
+    private GMap.NET.WindowsForms.GMapControl gMap;
+    private System.Windows.Forms.Button LoadContractsbutton;
   }
 }
 
