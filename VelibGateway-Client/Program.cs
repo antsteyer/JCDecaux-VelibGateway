@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VelibGateway_Client.VelibServiceReference;
+
 
 namespace VelibGateway_Client
 {
   class Program
   {
-    static void Main(string[] args)
+    [STAThread]
+    static void Main()
     {
-      ServiceClient client = new ServiceClient();
+      Application.EnableVisualStyles();
+      Application.SetCompatibleTextRenderingDefault(false);
+      Application.Run(new Form1());
       
-      Console.WriteLine(client.showCoucou());
-      Console.ReadLine();
     }
   }
 }

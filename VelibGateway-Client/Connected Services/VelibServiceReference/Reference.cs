@@ -9,17 +9,418 @@
 //------------------------------------------------------------------------------
 
 namespace VelibGateway_Client.VelibServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract", Namespace="http://schemas.datacontract.org/2004/07/VelibGateway_Service.model")]
+    [System.SerializableAttribute()]
+    public partial class Contract : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] citiesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string commercial_nameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string country_codeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] cities {
+            get {
+                return this.citiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.citiesField, value) != true)) {
+                    this.citiesField = value;
+                    this.RaisePropertyChanged("cities");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string commercial_name {
+            get {
+                return this.commercial_nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.commercial_nameField, value) != true)) {
+                    this.commercial_nameField = value;
+                    this.RaisePropertyChanged("commercial_name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string country_code {
+            get {
+                return this.country_codeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.country_codeField, value) != true)) {
+                    this.country_codeField = value;
+                    this.RaisePropertyChanged("country_code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nameField, value) != true)) {
+                    this.nameField = value;
+                    this.RaisePropertyChanged("name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Station", Namespace="http://schemas.datacontract.org/2004/07/VelibGateway_Service.model")]
+    [System.SerializableAttribute()]
+    public partial class Station : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string addressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int available_bike_standsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int available_bikesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool bankingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int bike_standsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool bonusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string contract_nameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long last_updateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int numberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private VelibGateway_Client.VelibServiceReference.Position positionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string statusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string address {
+            get {
+                return this.addressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.addressField, value) != true)) {
+                    this.addressField = value;
+                    this.RaisePropertyChanged("address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int available_bike_stands {
+            get {
+                return this.available_bike_standsField;
+            }
+            set {
+                if ((this.available_bike_standsField.Equals(value) != true)) {
+                    this.available_bike_standsField = value;
+                    this.RaisePropertyChanged("available_bike_stands");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int available_bikes {
+            get {
+                return this.available_bikesField;
+            }
+            set {
+                if ((this.available_bikesField.Equals(value) != true)) {
+                    this.available_bikesField = value;
+                    this.RaisePropertyChanged("available_bikes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool banking {
+            get {
+                return this.bankingField;
+            }
+            set {
+                if ((this.bankingField.Equals(value) != true)) {
+                    this.bankingField = value;
+                    this.RaisePropertyChanged("banking");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int bike_stands {
+            get {
+                return this.bike_standsField;
+            }
+            set {
+                if ((this.bike_standsField.Equals(value) != true)) {
+                    this.bike_standsField = value;
+                    this.RaisePropertyChanged("bike_stands");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool bonus {
+            get {
+                return this.bonusField;
+            }
+            set {
+                if ((this.bonusField.Equals(value) != true)) {
+                    this.bonusField = value;
+                    this.RaisePropertyChanged("bonus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string contract_name {
+            get {
+                return this.contract_nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.contract_nameField, value) != true)) {
+                    this.contract_nameField = value;
+                    this.RaisePropertyChanged("contract_name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long last_update {
+            get {
+                return this.last_updateField;
+            }
+            set {
+                if ((this.last_updateField.Equals(value) != true)) {
+                    this.last_updateField = value;
+                    this.RaisePropertyChanged("last_update");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nameField, value) != true)) {
+                    this.nameField = value;
+                    this.RaisePropertyChanged("name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int number {
+            get {
+                return this.numberField;
+            }
+            set {
+                if ((this.numberField.Equals(value) != true)) {
+                    this.numberField = value;
+                    this.RaisePropertyChanged("number");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public VelibGateway_Client.VelibServiceReference.Position position {
+            get {
+                return this.positionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.positionField, value) != true)) {
+                    this.positionField = value;
+                    this.RaisePropertyChanged("position");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string status {
+            get {
+                return this.statusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.statusField, value) != true)) {
+                    this.statusField = value;
+                    this.RaisePropertyChanged("status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Position", Namespace="http://schemas.datacontract.org/2004/07/VelibGateway_Service.model")]
+    [System.SerializableAttribute()]
+    public partial class Position : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double latField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double lngField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double lat {
+            get {
+                return this.latField;
+            }
+            set {
+                if ((this.latField.Equals(value) != true)) {
+                    this.latField = value;
+                    this.RaisePropertyChanged("lat");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double lng {
+            get {
+                return this.lngField;
+            }
+            set {
+                if ((this.lngField.Equals(value) != true)) {
+                    this.lngField = value;
+                    this.RaisePropertyChanged("lng");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="VelibServiceReference.IService")]
     public interface IService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/showCoucou", ReplyAction="http://tempuri.org/IService/showCoucouResponse")]
-        string showCoucou();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TestConnexion", ReplyAction="http://tempuri.org/IService/TestConnexionResponse")]
+        string TestConnexion(string clientID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/showCoucou", ReplyAction="http://tempuri.org/IService/showCoucouResponse")]
-        System.Threading.Tasks.Task<string> showCoucouAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TestConnexion", ReplyAction="http://tempuri.org/IService/TestConnexionResponse")]
+        System.Threading.Tasks.Task<string> TestConnexionAsync(string clientID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Contracts", ReplyAction="http://tempuri.org/IService/ContractsResponse")]
+        VelibGateway_Client.VelibServiceReference.Contract[] Contracts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Contracts", ReplyAction="http://tempuri.org/IService/ContractsResponse")]
+        System.Threading.Tasks.Task<VelibGateway_Client.VelibServiceReference.Contract[]> ContractsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CitiesInContract", ReplyAction="http://tempuri.org/IService/CitiesInContractResponse")]
+        string[] CitiesInContract(string contractName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CitiesInContract", ReplyAction="http://tempuri.org/IService/CitiesInContractResponse")]
+        System.Threading.Tasks.Task<string[]> CitiesInContractAsync(string contractName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/StationsOfTheCity", ReplyAction="http://tempuri.org/IService/StationsOfTheCityResponse")]
+        VelibGateway_Client.VelibServiceReference.Station[] StationsOfTheCity(string cityName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/StationsOfTheCity", ReplyAction="http://tempuri.org/IService/StationsOfTheCityResponse")]
+        System.Threading.Tasks.Task<VelibGateway_Client.VelibServiceReference.Station[]> StationsOfTheCityAsync(string cityName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NumberOfBikesAvailableResponse")]
+        int NumberOfBikesAvailable(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NumberOfBikesAvailableResponse")]
+        System.Threading.Tasks.Task<int> NumberOfBikesAvailableAsync(string stationName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +450,44 @@ namespace VelibGateway_Client.VelibServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public string showCoucou() {
-            return base.Channel.showCoucou();
+        public string TestConnexion(string clientID) {
+            return base.Channel.TestConnexion(clientID);
         }
         
-        public System.Threading.Tasks.Task<string> showCoucouAsync() {
-            return base.Channel.showCoucouAsync();
+        public System.Threading.Tasks.Task<string> TestConnexionAsync(string clientID) {
+            return base.Channel.TestConnexionAsync(clientID);
+        }
+        
+        public VelibGateway_Client.VelibServiceReference.Contract[] Contracts() {
+            return base.Channel.Contracts();
+        }
+        
+        public System.Threading.Tasks.Task<VelibGateway_Client.VelibServiceReference.Contract[]> ContractsAsync() {
+            return base.Channel.ContractsAsync();
+        }
+        
+        public string[] CitiesInContract(string contractName) {
+            return base.Channel.CitiesInContract(contractName);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> CitiesInContractAsync(string contractName) {
+            return base.Channel.CitiesInContractAsync(contractName);
+        }
+        
+        public VelibGateway_Client.VelibServiceReference.Station[] StationsOfTheCity(string cityName) {
+            return base.Channel.StationsOfTheCity(cityName);
+        }
+        
+        public System.Threading.Tasks.Task<VelibGateway_Client.VelibServiceReference.Station[]> StationsOfTheCityAsync(string cityName) {
+            return base.Channel.StationsOfTheCityAsync(cityName);
+        }
+        
+        public int NumberOfBikesAvailable(string stationName) {
+            return base.Channel.NumberOfBikesAvailable(stationName);
+        }
+        
+        public System.Threading.Tasks.Task<int> NumberOfBikesAvailableAsync(string stationName) {
+            return base.Channel.NumberOfBikesAvailableAsync(stationName);
         }
     }
 }

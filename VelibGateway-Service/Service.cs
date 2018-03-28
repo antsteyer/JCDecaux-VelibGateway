@@ -51,7 +51,7 @@ namespace VelibGateway_Service
           }
         }
         CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
-        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(1);
         contractsCache.Add(contractName, responseToClient, cacheItemPolicy);
         return responseToClient;
       }
@@ -74,7 +74,7 @@ namespace VelibGateway_Service
         }
         List<Contract> contracts = JsonConvert.DeserializeObject<List<Contract>>(response);
         CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
-        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(1);
         contractsCache.Add("Contracts", contracts, cacheItemPolicy);
         return contracts;
       }
@@ -106,7 +106,7 @@ namespace VelibGateway_Service
           {
             responseToClient = station.available_bikes;
             CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
-            cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+            cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(1);
             contractsCache.Add(stationName, responseToClient, cacheItemPolicy);
             break;
           }
@@ -135,7 +135,7 @@ namespace VelibGateway_Service
         var stations = JsonConvert.DeserializeObject<List<Station>>(response);
 
         CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
-        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(30);
+        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddMinutes(1);
         contractsCache.Add(cityName, stations, cacheItemPolicy);
         return stations;
       }
