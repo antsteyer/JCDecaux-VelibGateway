@@ -17,6 +17,8 @@ namespace VelibGateway_Client
     private ServiceClient client; // client of the SOAP Service
     private Station[] stations; // Stocked to find the position of a station
     private System.Diagnostics.Stopwatch watch; // Used to calculate the execution time of each request
+    private List<String> contractsName;
+    private List<String> stationsName;
 
     public Form1()
     {
@@ -37,19 +39,23 @@ namespace VelibGateway_Client
     private void LoadContractsbutton_Click(object sender, EventArgs e)
     {
       ContractsList.Items.Clear();
+      contractsName = new List<string>();
       watch = System.Diagnostics.Stopwatch.StartNew();
       Contract[] contracts = client.Contracts();
       watch.Stop();
       foreach (Contract contract in contracts)
       {
         ContractsList.Items.Add(contract.name);
+        contractsName.Add(contract.name);
       }
+      
       perfLabel.Text = "Time to load Contracts : "+watch.ElapsedMilliseconds+" ms.";
     }
 
     private void ContractsList_SelectedIndexChanged(object sender, EventArgs e)
     {
       StationsList.Items.Clear();
+      stationsName = new List<String>();
       String contractName = (String) ContractsList.SelectedItem;
       watch = System.Diagnostics.Stopwatch.StartNew();
       stations = client.StationsOfTheCity(contractName);
@@ -57,6 +63,7 @@ namespace VelibGateway_Client
       foreach (Station station in stations)
       {
         StationsList.Items.Add(station.name);
+        stationsName.Add(station.name);
       }
       perfLabel.Text = "Time to load Stations : " + watch.ElapsedMilliseconds + " ms.";
     }
@@ -83,6 +90,63 @@ namespace VelibGateway_Client
       gMap.Position = new PointLatLng(p.lat,p.lng);
 
       BikesNumberlabel.Text = bikes.ToString();
+      
+    }
+
+    private void searchContract_Click(object sender, EventArgs e)
+    {
+      if((contractTextBox.Text.Length != 0) && (ContractsList.Items.Count != 0))
+      {
+        List<String> temp = new List<String>();
+        foreach(String item in contractsName)
+        {
+          if(item.Contains(contractTextBox.Text))
+          {
+            temp.Add(item);
+          }
+        }
+        ContractsList.Items.Clear();
+        foreach(String item in temp)
+        {
+          ContractsList.Items.Add(item);
+        }
+      }
+      else
+      {
+        ContractsList.Items.Clear();
+        foreach (String item in contractsName)
+        {
+          ContractsList.Items.Add(item);
+        }
+      }
+    }
+
+    private void searchStation_Click(object sender, EventArgs e)
+    {
+      if ((stationTextBox.Text.Length != 0) && (StationsList.Items.Count != 0))
+      {
+        List<String> temp = new List<String>();
+        foreach (String item in stationsName)
+        {
+          if (item.Contains(stationTextBox.Text.ToUpper()))
+          {
+            temp.Add(item);
+          }
+        }
+        StationsList.Items.Clear();
+        foreach (String item in temp)
+        {
+          StationsList.Items.Add(item);
+        }
+      }
+      else
+      {
+        StationsList.Items.Clear();
+        foreach (String item in stationsName)
+        {
+          StationsList.Items.Add(item);
+        }
+      }
     }
   }
 
