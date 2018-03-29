@@ -19,6 +19,6 @@ namespace VelibGateway_Service.model
     public int bike_stands { get; set; }
     public int available_bike_stands { get; set; }
     public int available_bikes { get; set; }
-    public long last_update { get; set; }
+    public Object last_update { get; set; }
   }
 }
