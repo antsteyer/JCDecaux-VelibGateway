@@ -110,6 +110,11 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Station", Namespace="http://schemas.datacontract.org/2004/07/VelibGateway_Service.model")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(VelibGateway_ClientConsole.VelibServiceReference.Contract[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(VelibGateway_ClientConsole.VelibServiceReference.Contract))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(VelibGateway_ClientConsole.VelibServiceReference.Station[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(VelibGateway_ClientConsole.VelibServiceReference.Position))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
     public partial class Station : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -137,7 +142,7 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
         private string contract_nameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long last_updateField;
+        private object last_updateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nameField;
@@ -253,12 +258,12 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long last_update {
+        public object last_update {
             get {
                 return this.last_updateField;
             }
             set {
-                if ((this.last_updateField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.last_updateField, value) != true)) {
                     this.last_updateField = value;
                     this.RaisePropertyChanged("last_update");
                 }
@@ -389,7 +394,7 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="VelibServiceReference.IService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="VelibServiceReference.IService", CallbackContract=typeof(VelibGateway_ClientConsole.VelibServiceReference.IServiceCallback))]
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TestConnexion", ReplyAction="http://tempuri.org/IService/TestConnexionResponse")]
@@ -421,6 +426,28 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NumberOfBikesAvailableResponse")]
         System.Threading.Tasks.Task<int> NumberOfBikesAvailableAsync(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SuscribeToStationEvent", ReplyAction="http://tempuri.org/IService/SuscribeToStationEventResponse")]
+        void SuscribeToStationEvent(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SuscribeToStationEvent", ReplyAction="http://tempuri.org/IService/SuscribeToStationEventResponse")]
+        System.Threading.Tasks.Task SuscribeToStationEventAsync(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SuscribeRequestFinishedEvent", ReplyAction="http://tempuri.org/IService/SuscribeRequestFinishedEventResponse")]
+        void SuscribeRequestFinishedEvent();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SuscribeRequestFinishedEvent", ReplyAction="http://tempuri.org/IService/SuscribeRequestFinishedEventResponse")]
+        System.Threading.Tasks.Task SuscribeRequestFinishedEventAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/Requested")]
+        void Requested(string statioName, int result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/RequestFinished")]
+        void RequestFinished();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -429,25 +456,26 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceClient : System.ServiceModel.ClientBase<VelibGateway_ClientConsole.VelibServiceReference.IService>, VelibGateway_ClientConsole.VelibServiceReference.IService {
+    public partial class ServiceClient : System.ServiceModel.DuplexClientBase<VelibGateway_ClientConsole.VelibServiceReference.IService>, VelibGateway_ClientConsole.VelibServiceReference.IService {
         
-        public ServiceClient() {
+        public ServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public ServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public ServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public ServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public ServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public string TestConnexion(string clientID) {
@@ -488,6 +516,22 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
         
         public System.Threading.Tasks.Task<int> NumberOfBikesAvailableAsync(string stationName) {
             return base.Channel.NumberOfBikesAvailableAsync(stationName);
+        }
+        
+        public void SuscribeToStationEvent(string stationName) {
+            base.Channel.SuscribeToStationEvent(stationName);
+        }
+        
+        public System.Threading.Tasks.Task SuscribeToStationEventAsync(string stationName) {
+            return base.Channel.SuscribeToStationEventAsync(stationName);
+        }
+        
+        public void SuscribeRequestFinishedEvent() {
+            base.Channel.SuscribeRequestFinishedEvent();
+        }
+        
+        public System.Threading.Tasks.Task SuscribeRequestFinishedEventAsync() {
+            return base.Channel.SuscribeRequestFinishedEventAsync();
         }
     }
 }

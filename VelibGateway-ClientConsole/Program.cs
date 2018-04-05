@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VelibGateway_ClientConsole.VelibServiceReference;
+using System.ServiceModel;
 
 namespace VelibGateway_ClientConsole
 {
@@ -11,7 +12,10 @@ namespace VelibGateway_ClientConsole
   {
     static void Main(string[] args)
     {
-      ServiceClient client = new ServiceClient();
+      ServiceCallBackSync objSync = new ServiceCallBackSync();
+      InstanceContext instCont = new InstanceContext(objSync);
+      ServiceClient client = new ServiceClient(instCont);
+      //ServiceClient client = new ServiceClient();
       Boolean exit = false;
       Console.WriteLine("--_VelibGateway Shell Client SOAP -v1.0_--");
       Console.WriteLine("Use /exit at anytime to end.");

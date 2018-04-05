@@ -70,4 +70,39 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SuscribeToStationEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuscribeToStationEventResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuscribeRequestFinishedEvent">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuscribeRequestFinishedEventResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Requested">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="statioName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="result" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequestFinished">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
