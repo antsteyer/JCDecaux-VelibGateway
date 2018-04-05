@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IService.cs" />
+    <Compile Include="IServiceEvents.cs" />
     <Compile Include="model\Contract.cs" />
     <Compile Include="model\Position.cs" />
     <Compile Include="model\Station.cs" />

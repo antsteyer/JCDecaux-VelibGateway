@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ServiceModel;
 using VelibGateway_Service.model;
 
 namespace VelibGateway_Service
 {
-  [ServiceContract]
+  [ServiceContract(CallbackContract = typeof(IServiceEvents))]
   public interface IService
   {
     [OperationContract]
@@ -25,6 +22,12 @@ namespace VelibGateway_Service
 
     [OperationContract]
     int NumberOfBikesAvailable(String stationName);
+
+    [OperationContract]
+    void SuscribeToStationEvent(String stationName);
+  
+    [OperationContract]
+    void SuscribeRequestFinishedEvent();
     
   }
 }

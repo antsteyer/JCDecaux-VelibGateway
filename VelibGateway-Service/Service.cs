@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Caching;
 using VelibGateway_Service.model;
 using Newtonsoft.Json;
+using System.ServiceModel;
 
 namespace VelibGateway_Service
 {
+  [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
   public class Service : IService
   {
 
@@ -20,6 +19,10 @@ namespace VelibGateway_Service
     private static ObjectCache citiesCache = MemoryCache.Default;
     private static ObjectCache stationsCache = MemoryCache.Default;
     private static ObjectCache bikesCache = MemoryCache.Default;
+
+    // Actions
+    static Action<String,int> m_Event1 = delegate { };
+    static Action m_Event2 = delegate { };
 
     public List<String> CitiesInContract(String contractName)
     {
@@ -145,6 +148,19 @@ namespace VelibGateway_Service
     public string TestConnexion(String clientID)
     {
       return "From Server | Connexion established with : " + clientID;
+    }
+
+    public void SuscribeToStationEvent(string stationName)
+    {
+      IServiceEvents subscriber = OperationContext.Current.GetCallbackChannel<IServiceEvents>();
+      m_Event1 += subscriber.Requested;
+    }
+
+    public void SuscribeRequestFinishedEvent()
+    {
+      IServiceEvents subscriber = OperationContext.Current.GetCallbackChannel<IServiceEvents>();
+      m_Event2 += subscriber.RequestFinished;
+      throw new NotImplementedException();
     }
   }
 }
