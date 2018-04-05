@@ -90,8 +90,6 @@ namespace VelibGateway_Service
 
       if(bikesCache.Contains(stationName))
       {
-        m_Event1(stationName, (int)bikesCache.Get(stationName));
-        m_Event2();
         return (int)bikesCache.Get(stationName);
       }
       else
@@ -116,8 +114,6 @@ namespace VelibGateway_Service
             break;
           }
         }
-        m_Event1(stationName, responseToClient);
-        m_Event2();
         return responseToClient;
       }
       
@@ -163,6 +159,14 @@ namespace VelibGateway_Service
     {
       IServiceEvents subscriber = OperationContext.Current.GetCallbackChannel<IServiceEvents>();
       m_Event2 += subscriber.RequestFinished;
+    }
+
+    public void BikesAvailable(string stationName)
+    {
+      int result = NumberOfBikesAvailable(stationName);
+      m_Event1(stationName, result);
+      m_Event2();
+
     }
   }
 }

@@ -427,6 +427,12 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/NumberOfBikesAvailable", ReplyAction="http://tempuri.org/IService/NumberOfBikesAvailableResponse")]
         System.Threading.Tasks.Task<int> NumberOfBikesAvailableAsync(string stationName);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/BikesAvailable", ReplyAction="http://tempuri.org/IService/BikesAvailableResponse")]
+        void BikesAvailable(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/BikesAvailable", ReplyAction="http://tempuri.org/IService/BikesAvailableResponse")]
+        System.Threading.Tasks.Task BikesAvailableAsync(string stationName);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SuscribeToStationEvent", ReplyAction="http://tempuri.org/IService/SuscribeToStationEventResponse")]
         void SuscribeToStationEvent();
         
@@ -444,7 +450,7 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
     public interface IServiceCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/Requested")]
-        void Requested(string statioName, int result);
+        void Requested(string stationName, int result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/RequestFinished")]
         void RequestFinished();
@@ -516,6 +522,14 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
         
         public System.Threading.Tasks.Task<int> NumberOfBikesAvailableAsync(string stationName) {
             return base.Channel.NumberOfBikesAvailableAsync(stationName);
+        }
+        
+        public void BikesAvailable(string stationName) {
+            base.Channel.BikesAvailable(stationName);
+        }
+        
+        public System.Threading.Tasks.Task BikesAvailableAsync(string stationName) {
+            return base.Channel.BikesAvailableAsync(stationName);
         }
         
         public void SuscribeToStationEvent() {
