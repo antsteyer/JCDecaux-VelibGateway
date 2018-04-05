@@ -90,6 +90,8 @@ namespace VelibGateway_Service
 
       if(bikesCache.Contains(stationName))
       {
+        m_Event1(stationName, (int)bikesCache.Get(stationName));
+        m_Event2();
         return (int)bikesCache.Get(stationName);
       }
       else
@@ -114,7 +116,8 @@ namespace VelibGateway_Service
             break;
           }
         }
-
+        m_Event1(stationName, responseToClient);
+        m_Event2();
         return responseToClient;
       }
       
@@ -150,7 +153,7 @@ namespace VelibGateway_Service
       return "From Server | Connexion established with : " + clientID;
     }
 
-    public void SuscribeToStationEvent(string stationName)
+    public void SuscribeToStationEvent()
     {
       IServiceEvents subscriber = OperationContext.Current.GetCallbackChannel<IServiceEvents>();
       m_Event1 += subscriber.Requested;
@@ -160,7 +163,6 @@ namespace VelibGateway_Service
     {
       IServiceEvents subscriber = OperationContext.Current.GetCallbackChannel<IServiceEvents>();
       m_Event2 += subscriber.RequestFinished;
-      throw new NotImplementedException();
     }
   }
 }

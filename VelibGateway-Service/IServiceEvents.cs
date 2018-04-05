@@ -5,7 +5,7 @@ namespace VelibGateway_Service
   public interface IServiceEvents
   {
     [OperationContract(IsOneWay = true)]
-    void Requested(string statioName, int result);
+    void Requested(string stationName, int result);
 
     [OperationContract(IsOneWay = true)]
     void RequestFinished();

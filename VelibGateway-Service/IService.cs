@@ -24,7 +24,7 @@ namespace VelibGateway_Service
     int NumberOfBikesAvailable(String stationName);
 
     [OperationContract]
-    void SuscribeToStationEvent(String stationName);
+    void SuscribeToStationEvent();
   
     [OperationContract]
     void SuscribeRequestFinishedEvent();

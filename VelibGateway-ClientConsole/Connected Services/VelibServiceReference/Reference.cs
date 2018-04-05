@@ -428,10 +428,10 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
         System.Threading.Tasks.Task<int> NumberOfBikesAvailableAsync(string stationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SuscribeToStationEvent", ReplyAction="http://tempuri.org/IService/SuscribeToStationEventResponse")]
-        void SuscribeToStationEvent(string stationName);
+        void SuscribeToStationEvent();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SuscribeToStationEvent", ReplyAction="http://tempuri.org/IService/SuscribeToStationEventResponse")]
-        System.Threading.Tasks.Task SuscribeToStationEventAsync(string stationName);
+        System.Threading.Tasks.Task SuscribeToStationEventAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SuscribeRequestFinishedEvent", ReplyAction="http://tempuri.org/IService/SuscribeRequestFinishedEventResponse")]
         void SuscribeRequestFinishedEvent();
@@ -518,12 +518,12 @@ namespace VelibGateway_ClientConsole.VelibServiceReference {
             return base.Channel.NumberOfBikesAvailableAsync(stationName);
         }
         
-        public void SuscribeToStationEvent(string stationName) {
-            base.Channel.SuscribeToStationEvent(stationName);
+        public void SuscribeToStationEvent() {
+            base.Channel.SuscribeToStationEvent();
         }
         
-        public System.Threading.Tasks.Task SuscribeToStationEventAsync(string stationName) {
-            return base.Channel.SuscribeToStationEventAsync(stationName);
+        public System.Threading.Tasks.Task SuscribeToStationEventAsync() {
+            return base.Channel.SuscribeToStationEventAsync();
         }
         
         public void SuscribeRequestFinishedEvent() {

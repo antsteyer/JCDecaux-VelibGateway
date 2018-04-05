@@ -15,7 +15,7 @@ namespace VelibGateway_ClientConsole
       ServiceCallBackSync objSync = new ServiceCallBackSync();
       InstanceContext instCont = new InstanceContext(objSync);
       ServiceClient client = new ServiceClient(instCont);
-      //ServiceClient client = new ServiceClient();
+
       Boolean exit = false;
       Console.WriteLine("--_VelibGateway Shell Client SOAP -v1.0_--");
       Console.WriteLine("Use /exit at anytime to end.");
@@ -94,6 +94,8 @@ namespace VelibGateway_ClientConsole
             Console.Write("Enter the name of the station : ");
             String stationName = Console.ReadLine();
             watch = System.Diagnostics.Stopwatch.StartNew();
+            client.SuscribeToStationEvent();
+            client.SuscribeRequestFinishedEvent();
             int bikes = client.NumberOfBikesAvailable(stationName);
             if (bikes < 0)
             {
