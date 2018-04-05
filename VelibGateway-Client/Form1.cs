@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GMap.NET;
+using System.ServiceModel;
 using VelibGateway_Client.VelibServiceReference;
 
 namespace VelibGateway_Client
@@ -32,7 +33,9 @@ namespace VelibGateway_Client
       gMap.Zoom = 17;
 
       // Initialize Service
-      client = new ServiceClient();
+      ServiceCallBackSync objSync = new ServiceCallBackSync();
+      InstanceContext instCont = new InstanceContext(objSync);
+      client = new ServiceClient(instCont);
       
     }
 
